@@ -8,7 +8,7 @@ class CityController < ApplicationController
     end
 
     def show_city
-puts Rails.application.credentials.open_weather[:appid]
+
         uri = URI.parse("http://api.openweathermap.org/data/2.5/weather?q=#{params[:city]}&appid=#{Rails.application.credentials.open_weather[:appid]}")
         @res = JSON.parse(Net::HTTP.get(uri))
 
