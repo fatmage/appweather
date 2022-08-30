@@ -13,12 +13,19 @@ class CityController < ApplicationController
         @res = JSON.parse(Net::HTTP.get(uri))
 
         if @res.empty?
+            @temp = 123
+
+            #@wind = @res['wind']['speed']
+            #@humidity = @res['main']['humidity']
+            #@clouds = @res['clouds']['all']
+            @icon = @res['weather'][0]['icon'] 
             
    
         else
-            @wind = @res['wind']['speed']
-            @humidity = @res['main']['humidity']
-            @clouds = @res['clouds']['all']
+            @temp = @res['main']['temp']
+            #@wind = @res['wind']['speed']
+            #@humidity = @res['main']['humidity']
+            #@clouds = @res['clouds']['all']
             @icon = @res['weather'][0]['icon'] 
         end
  
