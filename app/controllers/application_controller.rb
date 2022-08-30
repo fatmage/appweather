@@ -1,6 +1,10 @@
 class ApplicationController < ActionController::Base
 
-    def hello
-        render html: "hello, world!"
+    def index
     end
+
+    def show_city
+
+    end
+
 end
