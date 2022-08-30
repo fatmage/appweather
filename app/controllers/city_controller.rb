@@ -21,12 +21,7 @@ puts Rails.application.credentials.open_weather[:appid]
             @clouds = @res['clouds']['all']
             @icon = @res['weather'][0]['icon'] 
         end
-
-
-        @wind = @res['wind']['speed']
-        @humidity = @res['main']['humidity']
-        @clouds = @res['clouds']['all']
-        @icon = @res['weather'][0]['icon']    
+ 
 
 
     end
