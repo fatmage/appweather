@@ -7,14 +7,17 @@ class CityController < ApplicationController
      #   @cities = City.all
     end
 
+    def kelvin_to_celsius(f)
+        return (f-273.15).round(1)
+    end
+
     def show_city
 
         uri = URI.parse("http://api.openweathermap.org/data/2.5/weather?q=#{params[:city]}&appid=#{Rails.application.credentials.dig(:open_weather, :appid)}")
-        #uri = URI.parse("http://api.openweathermap.org/data/2.5/weather?q=#{params[:city]}&appid=23833e88e1260c293773e3f1e59ce5e8")
         @res = JSON.parse(Net::HTTP.get(uri))
 
         if @res.empty?
-            @temp = 123
+            @temp = "Error"
 
             #@wind = @res['wind']['speed']
             #@humidity = @res['main']['humidity']
@@ -23,7 +26,8 @@ class CityController < ApplicationController
             
    
         else
-            @temp = @res['main']['temp']
+            @temp = kelvin_to_celsius(@res['main']['temp'])
+            @desc = @res['weather'][0]['description'].capitalize
             #@wind = @res['wind']['speed']
             #@humidity = @res['main']['humidity']
             #@clouds = @res['clouds']['all']
