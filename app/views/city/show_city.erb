@@ -1,48 +1,54 @@
 <div id="main-box">
-<h1> Weather Smasher T-Rex Ultra 3000 </h1>
-<%= @res %>
+    <h1> Weather Smasher T-Rex Ultra 3000 </h1>
 
-<div style="text-align: left">
-<h2> <%= params[:city].capitalize%>, <%= @res.dig("sys", "country") %> </h2>
-</div>
+    <div style="text-align: left">
+        <h2> <%= @location %> </h2>
+        <%= @time %>
+    </div>
 
-<div id="weather-box">
-<div>
-<div> <img src="http://openweathermap.org/img/wn/<%= @icon %>.png"> </div>
-<div style="float: ">
-<div> <%= @temp %>℃ </div> 
-<div> <%= @desc %> </div>
-</div>
-</div>
-<div>
-</div>
+    <div id="weather-box">
+        <div style="float: left; width: 50%">
+            <div style="float: left; width: 50%"> <img src="http://openweathermap.org/img/wn/<%= @icon %>.png" style="width: 60%; height: 60%"> </div>
+            <div style="float: left; height: 100%">
+                <div style="font-size: 4.0em; height: 50%; padding: 10px;"> <%= @temp %> </div> 
+                <div style-"font-size: 1.5em; vertical-align: bottom;"> <%= @desc %> </div>
+            </div>
+        </div>
 
-</div>
+        <div style="float: left; width: 50%;">
+        <% @secondary.each do |i| %>
+            <div class="secondary-info">
+                <div style="font-size: 2.0em; height: 50%;"> <%= i[:text]%> </div> 
+                <div style-"font-size: 1.8em;"> <%= i[:val] %> </div>
+            </div>
+        <% end %>
 
-<div>
+        </div>
 
-<div>
-</div>
+    </div>
 
-<div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-<div></div>
-</div>
+    
+    <div id="tertiary-info-container">
 
-</div>
+        <% @tertiary.each do |i| %>
+            <div class="tertiary-info">
+                <p style="font-size: 1.5em; height: 50%;"> <%= i[:text]%> </p> 
+                <p style-"font-size: 1.2em;"> <%= i[:val] %> </p>
+            </div>
+        <% end %>
 
 
-<h3> Do you want to check another city? </h3>
 
-<form action="/show_city">
-<input name="city" type="text">
-<button type="submit">Check</button>
-</form>
+    </div>
+
+    <div id="form-box">
+        <h3> Do you want to check another city? </h3>
+        
+        <form action="/show_city">
+            <input name="city" type="text">
+            <button type="submit">Check</button>
+        </form>
+    </div>
 
 </div>
 
