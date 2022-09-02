@@ -1,7 +1,4 @@
 
-
-
-
 #main-box {
     margin: auto; 
     text-align: center;
@@ -10,15 +7,18 @@
 }
 
 #weather-box {
+    text-align: left;
     width: 100%;
     height: 50%;
     float: left;
-    padding-bottom: 50px;
+    padding-top: 20px;
+    padding-bottom: 40px;
 }
 
-#tertiary-info-container {
+#form-box {
+    text-align: center;
     margin: auto;
-    height: 30%;
+    padding-top: 30px;
 }
 
 .secondary-info {
@@ -37,7 +37,3 @@
     padding-bottom: 20px;
 }
 
-#form-box {
-    text-align: center;
-    margin: auto;
-}

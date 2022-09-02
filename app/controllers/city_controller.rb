@@ -5,10 +5,6 @@ require 'time'
 
 class CityController < ApplicationController
 
-    def index
-     #   @cities = City.all
-    end
-
     def kelvin_to_celsius(f)
         return (f-273.15).round(1)
     end
@@ -18,7 +14,7 @@ class CityController < ApplicationController
         uri = URI.parse("http://api.openweathermap.org/data/2.5/weather?q=#{params[:city]}&appid=#{Rails.application.credentials.dig(:open_weather, :appid)}")
         @res = JSON.parse(Net::HTTP.get(uri))
 
-        if @res
+        if @res and @res['cod'] != "404"
             @temp = kelvin_to_celsius(@res['main']['temp']).to_s + "℃"
             @desc = @res['weather'][0]['description'].capitalize
             @location = params[:city].capitalize + ", " + @res['sys']['country']
@@ -43,12 +39,13 @@ class CityController < ApplicationController
             if @res['rain']
                 @tertiary += [{:text => "Pressure", :val => @res['rain']['1h'].to_s + " last hour"}]
             end
-            #@wind = @res['wind']['speed']
-            #@humidity = @res['main']['humidity']
-            #@clouds = @res['clouds']['all']
-            @icon = @res['weather'][0]['icon']          
-   
+
+            @icon = @res['weather'][0]['icon']
         else
+
+            @secondary = []
+            @tertiary = []
+
 
         end
  
